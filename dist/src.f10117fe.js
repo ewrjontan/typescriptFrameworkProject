@@ -131,10 +131,33 @@ function () {
   // set to private so other engineers can't just access user data
   function User(data) {
     this.data = data;
+    this.events = {};
   }
 
   User.prototype.get = function (propName) {
     return this.data[propName];
+  };
+
+  User.prototype.set = function (update) {
+    Object.assign(this.data, update);
+  };
+
+  User.prototype.on = function (eventName, callback) {
+    var handlers = this.events[eventName] || [];
+    handlers.push(callback);
+    this.events[eventName] = handlers;
+  };
+
+  User.prototype.trigger = function (eventName) {
+    var handlers = this.events[eventName];
+
+    if (!handlers || handlers.length === 0) {
+      return;
+    }
+
+    handlers.forEach(function (callback) {
+      callback();
+    });
   };
 
   return User;
@@ -154,8 +177,16 @@ var user = new User_1.User({
   name: 'jontan',
   age: 20
 });
-console.log(user.get('name'));
-console.log(user.get('age'));
+user.on('change', function () {
+  console.log('change #1');
+});
+user.on('change', function () {
+  console.log('change #2');
+});
+user.on('save', function () {
+  console.log('save was triggered');
+});
+user.trigger('asdasdasd');
 },{"./models/User":"src/models/User.ts"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -184,7 +215,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65174" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55431" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
