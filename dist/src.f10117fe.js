@@ -2272,6 +2272,18 @@ function () {
     });
   };
 
+  User.prototype.save = function () {
+    var id = this.get('id');
+
+    if (this.get('id')) {
+      // Put
+      axios_1.default.put("http://localhost:3000/users/".concat(id), this.data);
+    } else {
+      // post
+      axios_1.default.post('http://localhost:3000/users', this.data);
+    }
+  };
+
   return User;
 }();
 
@@ -2283,15 +2295,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var User_1 = require("./models/User");
+var User_1 = require("./models/User"); //const user = new User({id: 1});
+//user.set({name: 'New Name', age: 69});
+
 
 var user = new User_1.User({
-  id: 1
+  name: 'a new user',
+  age: 3000
 });
-user.fetch();
-setTimeout(function () {
-  console.log(user);
-}, 4000);
+user.save();
 },{"./models/User":"src/models/User.ts"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
