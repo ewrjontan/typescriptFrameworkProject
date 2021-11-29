@@ -2381,6 +2381,20 @@ function () {
     this.events.trigger('change');
   };
 
+  User.prototype.fetch = function () {
+    var _this = this;
+
+    var id = this.get('id');
+
+    if (typeof id !== 'number') {
+      throw new Error('Cannot fetch without an id');
+    }
+
+    this.sync.fetch(id).then(function (response) {
+      _this.set(response.data);
+    });
+  };
+
   return User;
 }();
 
@@ -2394,19 +2408,18 @@ Object.defineProperty(exports, "__esModule", {
 
 var User_1 = require("./models/User"); //const user = new User({id: 1});
 //user.set({name: 'New Name', age: 69});
+//const user = new User({name: 'a new user', age: 3000});
+//console.log(user.get('name'));
+//user.set({name: 'new Name'});
 
 
 var user = new User_1.User({
-  name: 'a new user',
-  age: 3000
+  id: 1
 });
-console.log(user.get('name'));
 user.on('change', function () {
-  console.log('user was changed!');
+  console.log(user);
 });
-user.set({
-  name: 'new Name'
-});
+user.fetch();
 /*
 user.on('change', () => {
     console.log('user was changed');
