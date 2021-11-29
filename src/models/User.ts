@@ -1,4 +1,5 @@
 import { Eventing} from './Eventing';
+import { Sync } from './Sync';
 
 export interface UserProps {
     //question marks make properties optional
@@ -7,8 +8,11 @@ export interface UserProps {
     id?: number;
 }
 
+const rootUrl = 'http://localhost:3000/users';
+
 export class User {
     public events: Eventing = new Eventing();
+    public sync: Sync<UserProps> = new Sync<UserProps>(rootUrl);
 
     // set to private so other engineers can't just access user data
     constructor(private data: UserProps){}
