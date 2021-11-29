@@ -1,7 +1,10 @@
+import axios, { AxiosResponse } from 'axios';
+
 interface UserProps {
     //question marks make properties optional
-    name?: string,
-    age?: number
+    name?: string;
+    age?: number;
+    id?: number;
 }
 
 //type alias used for type annotation
@@ -38,6 +41,13 @@ export class User {
 
         handlers.forEach(callback => {
             callback();
+        })
+    }
+
+    fetch(): void {
+        axios.get(`http://localhost:3000/users/${this.get('id')}`)
+        .then((response: AxiosResponse): void => {
+            this.set(response.data);
         })
     }
 }
