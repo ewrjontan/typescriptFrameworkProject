@@ -29,9 +29,12 @@ export class UserForm {
     onSetNameClick = (): void => {
         const input = this.parent.querySelector('input');
 
-        const name = input.value;
-
-        this.model.set( { name });
+        //type guard so 'input' does not throw error due to being html element or null
+        if (input) {
+            const name = input.value;
+            this.model.set( { name });
+        }
+        
     }
 
     template(): string {
