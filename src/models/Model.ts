@@ -29,7 +29,7 @@ export class Model<T extends HasId> {
     ) {}
     
     //this creates reference to events on method
-    get on() {
+    /*get on() {
         return this.events.on;
     }
 
@@ -39,7 +39,14 @@ export class Model<T extends HasId> {
 
     get get() {
         return this.attributes.get;
-    }
+    }*/
+
+    //this is the same as the "get" statement
+    on = this.events.on;
+
+    trigger = this.events.trigger;
+
+    get = this.attributes.get;
 
     set(update: T): void {
         this.attributes.set(update);
