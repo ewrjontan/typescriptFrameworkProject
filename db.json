@@ -6,9 +6,34 @@
       "age": 0
     },
     {
-      "name": "a new user",
-      "age": 3000,
+      "name": "jontantest",
+      "age": 16,
       "id": 2
+    },
+    {
+      "name": "NAME",
+      "age": 20,
+      "id": 3
+    },
+    {
+      "name": "NAME",
+      "age": 69,
+      "id": 4
+    },
+    {
+      "name": "NAME",
+      "age": 20,
+      "id": 5
+    },
+    {
+      "name": "NAME",
+      "age": 20,
+      "id": 6
+    },
+    {
+      "name": "NAME",
+      "age": 20,
+      "id": 7
     }
   ]
 }

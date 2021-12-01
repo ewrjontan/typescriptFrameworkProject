@@ -257,6 +257,10 @@ var UserForm = /*#__PURE__*/function (_View_1$View) {
       }
     };
 
+    _this.onSaveClick = function () {
+      _this.model.save();
+    };
+
     return _this;
   } //object array of keys that takes no arguments and returns nothing
 
@@ -266,13 +270,14 @@ var UserForm = /*#__PURE__*/function (_View_1$View) {
     value: function eventsMap() {
       return {
         'click:.set-age': this.onSetAgeClick,
-        'click:.set-name': this.onSetNameClick
+        'click:.set-name': this.onSetNameClick,
+        'click:.save-model': this.onSaveClick
       };
     }
   }, {
     key: "template",
     value: function template() {
-      return "\n            <div>\n                <h1>User Form</h1>\n                <div> Username: ".concat(this.model.get('name'), " </div>\n                <div> Age: ").concat(this.model.get('age'), " </div>\n                <input/>\n                <button class=\"set-name\">Change Name</button>\n                <button class=\"set-age\">Set Random Age</button>\n            </div>\n        ");
+      return "\n            <div>\n                <input placeholder=\"".concat(this.model.get('name'), "\"/>\n                <button class=\"set-name\">Change Name</button>\n                <button class=\"set-age\">Set Random Age</button>\n                <button class=\"save-model\">Save User</button>\n            </div>\n        ");
     }
   }]);
 
@@ -2537,6 +2542,8 @@ var ApiSync = /*#__PURE__*/function () {
     value: function save(data) {
       //const { id } = data;
       var id = data.id;
+      console.log('api sync');
+      console.log(data.id);
 
       if (id) {
         // Put
