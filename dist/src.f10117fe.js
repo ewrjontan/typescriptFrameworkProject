@@ -153,6 +153,11 @@ var View = /*#__PURE__*/function () {
   }
 
   _createClass(View, [{
+    key: "eventsMap",
+    value: function eventsMap() {
+      return {};
+    }
+  }, {
     key: "bindModel",
     value: function bindModel() {
       var _this = this;
